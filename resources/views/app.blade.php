@@ -1,20 +1,15 @@
 @extends('base')
 <!doctype html>
 <html lang="en">
-<head>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS -->
 
+<head>
     <title>Laravel CRUD</title>
 </head>
-<body>
-<h1>Todos</h1>
-<hr>
 
-<h2>Add new task</h2>
+  <!-- Setting up alerts for errors. -->
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -24,6 +19,9 @@
         </ul>
     </div>
 @endif
+
+<body>
+<h1> Add new task </h1>
 <form action="{{ url('/todos') }}" method="POST">
     @csrf
     <input type="text" class="form-control" name="title" placeholder="Add new title">
@@ -42,12 +40,13 @@
     </div>
 @endif
 <ul class="list-group">
-
     @foreach($todos as $todo)
         <li class="list-group-item">
-            Title: {{$todo->title}}
-            Task: {{ $todo->task }}
+            <h3> Title: {{$todo->title}} </h3>
+            <h4> Task: {{ $todo->task }} </h4>
             {{$todo->dueDateTime}}
+            <br>
+
             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $loop->index }}" aria-expanded="false">
                 Edit
             </button>
@@ -78,11 +77,11 @@
 <h2>Completed Tasks</h2>
 @foreach($todosComplete as $todoComplete)
     <li class="list-group-item">
-        {{$todoComplete->title}}
+        <h3> Title: {{$todoComplete->dueDateTime}} </h3>
+        <h4> Task: {{$todoComplete->title}} </h4>
         {{$todoComplete->task}}
     </li>
 @endforeach
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 </html>

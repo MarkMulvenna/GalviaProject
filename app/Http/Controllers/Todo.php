@@ -96,7 +96,7 @@ class Todo extends Controller
         DB::table('todos')->where('id', $id)->update([
             'task' => $request->task,
             'title' => $request->title,
-            'dueDate' => $request->dueDate
+            'dueDateTime' => $request->dueDate
         ]);
 
         $this->complete($request, $id);
