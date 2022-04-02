@@ -28,9 +28,8 @@
 @endif
 <form action="{{ url('/todos') }}" method="POST">
     @csrf
-
+    <input type="text" class="form-control" name="title" placeholder="Add new title">
     <input type="text" class="form-control" name="task" placeholder="Add new task">
-
     <div class="d-grid gap-2">
     <button class="btn btn-primary" type="submit">Add New ToDo</button>
     </div>
@@ -47,6 +46,7 @@
 
     @foreach($todos as $todo)
         <li class="list-group-item">
+            {{$todo->title}}
             {{ $todo->task }}
             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $loop->index }}" aria-expanded="false">
                 Edit
@@ -62,6 +62,7 @@
                     <form action="{{ url('todos/'.$todo->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+                        <input type="text" name="title" value="{{ $todo->title }}">
                         <input type="text" name="task" value="{{ $todo->task }}">
                         <button class="btn btn-secondary" type="submit">Update</button>
                     </form>

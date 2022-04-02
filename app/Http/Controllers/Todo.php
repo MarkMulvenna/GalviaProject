@@ -42,7 +42,8 @@ class Todo extends Controller
 
         // store the data
         DB::table('todos')->insert([
-            'task' => $request->task
+            'task' => $request->task,
+            'title' => $request->title
         ]);
 
         // redirect
@@ -87,7 +88,8 @@ class Todo extends Controller
 
         // update the data
         DB::table('todos')->where('id', $id)->update([
-            'task' => $request->task
+            'task' => $request->task,
+            'title' => $request->title
         ]);
 
         // redirect
