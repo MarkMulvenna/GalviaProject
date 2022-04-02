@@ -46,7 +46,10 @@ class Todo extends Controller
         // store the data
         DB::table('todos')->insert([
             'task' => $request->task,
-            'title' => $request->title
+            'title' => $request->title,
+            'dueDateTime' => $request->dueDate
+
+
         ]);
 
         // redirect
@@ -92,9 +95,11 @@ class Todo extends Controller
         // update the data
         DB::table('todos')->where('id', $id)->update([
             'task' => $request->task,
-            'title' => $request->title
+            'title' => $request->title,
+            'dueDate' => $request->dueDate
         ]);
 
+        $this->complete($request, $id);
         // redirect
         return redirect('/')->with('status', 'Task updated!');
 

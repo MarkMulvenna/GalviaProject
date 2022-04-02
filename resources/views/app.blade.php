@@ -1,4 +1,4 @@
-
+@extends('base')
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,9 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <title>Laravel CRUD</title>
 </head>
@@ -30,6 +28,7 @@
     @csrf
     <input type="text" class="form-control" name="title" placeholder="Add new title">
     <input type="text" class="form-control" name="task" placeholder="Add new task">
+    <input type="datetime-local" class="form-control" name="dueDate">
     <div class="d-grid gap-2">
     <button class="btn btn-primary" type="submit">Add New ToDo</button>
     </div>
@@ -46,8 +45,9 @@
 
     @foreach($todos as $todo)
         <li class="list-group-item">
-            {{$todo->title}}
-            {{ $todo->task }}
+            Title: {{$todo->title}}
+            Task: {{ $todo->task }}
+            {{$todo->dueDateTime}}
             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $loop->index }}" aria-expanded="false">
                 Edit
             </button>

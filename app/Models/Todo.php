@@ -9,6 +9,7 @@ class Todo extends Model
 {
     protected $fillable = [
         'title',
-        'task'
+        'task',
+        'dueDate'
     ];
 }
