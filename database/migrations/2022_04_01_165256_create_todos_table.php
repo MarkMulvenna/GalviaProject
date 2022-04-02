@@ -15,8 +15,10 @@ class CreateTodosTable extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
             $table->string('task');
-            $table->boolean('status')->default(false);
+            $table->dateTime('dueDateTime')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
