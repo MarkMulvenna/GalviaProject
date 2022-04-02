@@ -64,6 +64,8 @@
                         @method('PUT')
                         <input type="text" name="title" value="{{ $todo->title }}">
                         <input type="text" name="task" value="{{ $todo->task }}">
+                        <input type="checkbox" name="checkStatus">
+                        <label>Mark item as complete</label><br/><br/>
                         <button class="btn btn-secondary" type="submit">Update</button>
                     </form>
                 </div>
@@ -74,6 +76,12 @@
 <hr>
 
 <h2>Completed Tasks</h2>
+@foreach($todosComplete as $todoComplete)
+    <li class="list-group-item">
+        {{$todoComplete->title}}
+        {{$todoComplete->task}}
+    </li>
+@endforeach
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>

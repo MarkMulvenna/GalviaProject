@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Resource_;
+
 class Todo extends Controller
 {
     /**
@@ -13,8 +15,9 @@ class Todo extends Controller
      */
     public function index()
     {
-        $todos = DB::table('todos')->get();
-        return view('app', ['todos' => $todos]);
+        $todos = DB::table('todos')->where('status', '=' ,0)->get();
+        $todosComplete = DB::table('todos')->where('status', '=', 1)->get();
+        return view('app', ['todos' => $todos, 'todosComplete' => $todosComplete]);
     }
 
     /**
@@ -109,6 +112,18 @@ class Todo extends Controller
 
         // redirect
         return redirect('/')->with('status', 'Task removed!');
+    }
+
+    public function complete(Request $request, $id)
+    {
+        if ($request->has('checkStatus'))
+        {
+            DB::table('todos')->where('id', $id)->update(['status' => 1]);
+
+        }
+        return redirect('/')->with('status', 'Task marked as complete');
+
+
     }
 
 }
